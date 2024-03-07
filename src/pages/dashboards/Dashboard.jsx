@@ -1,29 +1,49 @@
 
 import React, { useEffect, useState } from 'react';
+import { models } from 'powerbi-client';
+import { PowerBIEmbed } from 'powerbi-client-react';
+import axios from 'axios';
+import { BEARER_TOKEN } from '../../utils/constants';
 
 const Dashboard = () => {
-  const [dashboardDetails, setDashboardDetails] = useState({reportName: null, embedUrl: null});
+
+  const [reportConfig, setReportConfig] = useState({
+    type: 'report',
+    embedUrl: undefined,
+    accessToken: undefined,
+    id: undefined,
+    tokenType: models.TokenType.Embed,
+    settings: {
+      panes: {
+        filters: {
+          expanded: false,
+          visible: true
+        }
+      },
+      background: models.BackgroundType.Transparent,
+    }
+  });
+
   useEffect(() => {
-    getDetails()
+    setReportConfig(prevState => ({
+      ...prevState,
+      embedUrl: "x",
+      accessToken: "y",
+      id: "z"
+    }));
+    console.log(reportConfig)
   }, []);
 
-  const getDetails = () => {
-    let reportName = localStorage.getItem('reportname');
-    let embedUrl = localStorage.getItem('embedurl');
-    setDashboardDetails({reportName, embedUrl})
-    console.log("D Details" , dashboardDetails)
-  }
- 
-  return (<>
+  return (
+  <> 
     <div>
-      <div>Dashboard</div>
-        <div>
-          <div>Report Name : {dashboardDetails.reportName}</div>
-          <div>Embed Url : {dashboardDetails.embedUrl}</div>
-        </div>
-
+        <PowerBIEmbed
+          embedConfig = {reportConfig}
+          cssClassName = 'power-bi-report-class'
+        />
     </div>
-  </>)
+  </>
+  )
 }
 
 export default Dashboard

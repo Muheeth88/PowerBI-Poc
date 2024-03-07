@@ -33,11 +33,11 @@ const Accord = (props) => {
     }
   };
 
-  const handleReportClick = (reportName, embedUrl) => {
-    console.log(reportName, embedUrl)
+  const handleReportClick = (reportName, embedUrl ,id , datasetId) => {
     localStorage.clear();
-    localStorage.setItem("reportname", reportName)
     localStorage.setItem("embedurl", embedUrl)
+    localStorage.setItem("reportid", id)
+    localStorage.setItem("datasetid", datasetId)
     navigate(`/dashboard/${reportName}`);
   }
 
@@ -56,7 +56,7 @@ const Accord = (props) => {
           <div className="">
             {reports && reports.map((r) => (
               // <Link key={r.id} to="/dashboard">
-                <div key={r.id} onClick={() => handleReportClick(r.name, r.embedUrl)} className="my-4 cursor-pointer hover:bg-slate-100 p-2">
+                <div key={r.id} onClick={() => handleReportClick(r.name, r.embedUrl, r.id, r.datasetId)} className="my-4 cursor-pointer hover:bg-slate-100 p-2">
                   <div>
                     <span>Report Name : </span> <span>{r.name}</span>
                   </div>
