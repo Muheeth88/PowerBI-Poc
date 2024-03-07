@@ -16,6 +16,8 @@
     "@mui/material": "^5.15.4",
     "axios": "^1.6.5",
     "dotenv": "^16.3.1",
+    "powerbi-client": "^2.22.4",
+    "powerbi-client-react": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2"
