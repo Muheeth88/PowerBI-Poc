@@ -65,6 +65,7 @@ const Dashboard = () => {
 			accessToken: localStorage.getItem("accesstoken"),
 			id: localStorage.getItem("reportid"),
 			tokenType: models.TokenType.Embed,
+			Permissions: models.Permissions.All,
 			settings: {
 				panes: {
 					filters: {
@@ -75,7 +76,6 @@ const Dashboard = () => {
 			},
 		});
 		setPbiConfigured(true);
-		//  setTimeout( setPbiConfigured(true), 2000)
 	};
 
 	return (
